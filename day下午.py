@@ -1,0 +1,48 @@
+
+import numpy as np
+import timeit
+from numba import njit
+A = np.random.rand(1000, 2000)
+B = np.random.rand(2000, 3000)
+
+t1=timeit.timeit(lambda: np.dot(A, B), number=5)
+t2=timeit.timeit(lambda: A @ B, number=5)
+t3=timeit.timeit(lambda: np.matmul(A, B), number=5)
+print("np.dot耗时:", t1)
+print("@运算符耗时:", t2)
+print("np.matmul耗时:", t3)
+arr_c=np.random.rand(1000, 1000)
+arr_f=np.asfortranarray(arr_c)
+t_c_row=timeit.timeit(lambda: arr_c.sum(axis=1), number=100)
+t_c_col=timeit.timeit(lambda: arr_c.sum(axis=0), number=100)
+t_f_row=timeit.timeit(lambda: arr_f.sum(axis=1), number=100)
+t_f_col=timeit.timeit(lambda: arr_f.sum(axis=0), number=100)
+print("\nC顺序行求和耗时:", t_c_row)
+print("C顺序列求和耗时:", t_c_col)
+print("F顺序行求和耗时:", t_f_row)
+print("F顺序列求和耗时:", t_f_col)
+print("C连续标记:", arr_c.flags.contiguous, "F连续标记:", arr_f.flags.f_contiguous)
+res= np.empty_like(A)
+temp_sq=np.empty_like(A)
+temp_2a=np.empty_like(A)
+np.multiply(A, A, out=temp_sq)
+np.multiply(2, A, out=temp_2a)
+np.add(temp_sq, temp_2a, out=res)
+np.add(res, 1, out=res)
+prices=np.array([100, 102, 105, 103, 107])
+log_returns=np.log(prices[1:] / prices[:-1])
+print("\n对数收益率:\n", log_returns)
+np.random.seed(42)
+price_100=np.random.normal(100, 5, size=100)
+win5, win20=5, 20
+ma5=np.convolve(price_100, np.ones(win5)/win5, mode='valid')
+ma20=np.convolve(price_100, np.ones(win20)/win20, mode='valid')
+print("\nMA5长度:", len(ma5), "MA20长度:", len(ma20))
+np.random.seed(42)
+return_data=np.random.randn(1000, 252) * 0.01
+daily_std=np.std(return_data, axis=1, keepdims=True)
+annual_vol=daily_std * np.sqrt(252)
+corr_matrix=np.corrcoef(return_data)
+print("\n年化波动率shape:", annual_vol.shape)
+print("相关系数矩阵shape:", corr_matrix.shape)
+
