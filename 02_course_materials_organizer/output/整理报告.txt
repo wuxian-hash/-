@@ -1,0 +1,22 @@
+=== 课程资料整理报告 ===
+执行模式：复制文件（原始文件保留）
+总共整理文件数量：9
+
+文件迁移明细：
+sample_materials\NumPy数组练习.ipynb  >>>  output\homework\NumPy数组练习.ipynb
+sample_materials\Python第01讲_作业说明.pdf  >>>  output\homework\Python第01讲_作业说明.pdf
+sample_materials\Python第01讲_基础语法.pptx  >>>  output\slides\Python第01讲_基础语法.pptx
+sample_materials\Python第01讲_课堂代码.py  >>>  output\code\Python第01讲_课堂代码.py
+sample_materials\学生问题记录.md  >>>  output\documents\学生问题记录.md
+sample_materials\成绩样例.scv  >>>  output\others\成绩样例.scv
+sample_materials\截图_环境配置.png  >>>  output\images\截图_环境配置.png
+sample_materials\未分类文件.xyz  >>>  output\others\未分类文件.xyz
+sample_materials\课程通知.txt  >>>  output\documents\课程通知.txt
+
+各文件夹文件统计：
+homework : 2 个
+slides : 1 个
+code : 1 个
+documents : 2 个
+others : 2 个
+images : 1 个
